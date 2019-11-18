@@ -1,5 +1,6 @@
 <launch>
 
+ <arg name="bagrecord" default = "1"/>
     
 <include file="$(find turtlebot_gazebo)/launch/turtlebot_world.launch">
     <arg name="world_file" value="$(find walker)/worldwalker/walkerGazebo.world"/>
@@ -12,5 +13,11 @@
 	output="screen"
 	
     />
+   <node pkg="rosbag" 
+	type="record" 
+	name="walker" 
+	args="record -o /$(find walker)/results/record.bag --duration=10" 
+	if="$(arg bagrecord)">
+  </node>
 
 </launch>
