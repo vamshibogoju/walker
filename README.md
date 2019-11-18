@@ -34,18 +34,19 @@ Type the following command in a new terminal:
 ```
 roslaunch walker walker.launch
 ```
+Here rosbag record in not being run.
 
 # Recording using rosbag files 
 To record the ros topics use the following commands: 
 
 ```
-roslaunch walker walker.launch record:=true
+roslaunch walker walker.launch bagrecord:=1
 ```
 The recorder bag file will be saved in the results folder in the package
 
 To record for a specific time, say 20 seconds 
 ```
-roslaunch walker walker.launch record:=true secs:=20
+roslaunch walker walker.launch bagrecord:=1 secs:=20
 ```
 
 
@@ -60,7 +61,7 @@ Use following command to play the saved rosbag file
 ```
 rosbag play record.bag
 ```
-Published topic can be verfied by usiung following command:
+Published topic can be verfied by using following command:
 
 ```
 rostopic echo /mobile_base/commands/velocity
