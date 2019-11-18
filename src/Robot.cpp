@@ -49,9 +49,9 @@ Robot::Robot() {
   lVel = 0.5;
   // Initialization of angular velocity of robot
   aVel = 1.0;
-  //Initialization of the collide value.
+  // Initialization of the collide value.
   collide = false;
-  //Initialization of minimum gap between obstacle and robot
+  // Initialization of minimum gap between obstacle and robot
   minGap = 0.0;
 }
 
@@ -66,7 +66,6 @@ void Robot::pubIntial() {
       "/mobile_base/commands/velocity", 100);
   // Display publisher message
   ROS_INFO_STREAM("Started the Publisher");
-
 }
 
 /**
@@ -92,7 +91,7 @@ void Robot::callLaser(const sensor_msgs::LaserScan::ConstPtr& scanMsg) {
   // Finding the distance to the nearest obstacle
   for (auto i : scanMsg->ranges) {
     if (i < minGap && !std::isnan(i)) {
-      //Set the smallest value to the minGap.
+      // Set the smallest value to the minGap.
       minGap = i;
     }
   }
@@ -110,9 +109,8 @@ void Robot::callLaser(const sensor_msgs::LaserScan::ConstPtr& scanMsg) {
     // Display the obstacle presence
     ROS_INFO_STREAM("Robot turning due to obstacle ahead");
   }
-  //Function to run the robot based on the object point.
+  // Function to run the robot based on the object point.
   moveRobot(collide);
-
 }
 
 /**
@@ -130,11 +128,10 @@ void Robot::moveRobot(bool collide) {
     // robot moves in linear x direction
     twi.linear.x = lVel;
   }
-  //publish the values to the robot to follow.
+  // Publish the values to the robot to follow.
   velocit.publish(twi);
 }
 
 Robot::~Robot() {
-  // TODO Auto-generated destructor stub
 }
 
